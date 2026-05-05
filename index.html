@@ -15,14 +15,26 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
         :root {
-            --primary-purple: #D8B4FE;
-            --accent-purple: #A855F7;
-            --bg-gradient: radial-gradient(circle at 40% 30%, #F3E8FF, #D8B4FE 60%, #A855F7);
+            --primary-purple: #7B61FF;
+            --accent-purple: #7B61FF;
+            --bg-lavender: #F0EEFF;
+            --bg-gradient: linear-gradient(135deg, #F0EEFF 0%, #E0D5FF 100%);
             --text-white: #FFFFFF;
             --text-dark: #1A1A2E;
+            --text-muted: #4A4A6A;
             --input-bg: #F5F7FA;
-            --font-main: 'Sora', 'DM Sans', sans-serif;
-            --phone-shadow: 0 30px 80px rgba(124, 58, 237, 0.2);
+            --font-main: 'Plus Jakarta Sans', 'Sora', 'DM Sans', sans-serif;
+            --phone-shadow: 0 30px 80px rgba(123, 97, 255, 0.15);
+
+            /* Fluid Typography */
+            --font-hero: clamp(2.5rem, 8vw, 4.8rem);
+            --font-h2: clamp(1.5rem, 4vw, 2rem);
+            --font-body: clamp(0.875rem, 2vw, 1rem);
+            --font-label: clamp(0.75rem, 1.5vw, 0.875rem);
+
+            /* Fluid Spacing */
+            --section-padding: clamp(3rem, 8vw, 6rem);
+            --container-padding: clamp(1.5rem, 5vw, 4rem);
         }
 
         * {
@@ -686,13 +698,646 @@
             text-transform: uppercase;
         }
 
-        .tag-accent {
-            color: var(--accent-purple);
+        /* ── New Component Styles ── */
+
+        /* Onboarding */
+        .ob-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .attr-title {
-            font-size: 13px;
-            color: #8e8e93;
+        .ob-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .ob-phone-frame {
+            width: 320px;
+            height: 640px;
+            background: #1A1A2E;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 20px 50px rgba(123, 97, 255, 0.15);
+        }
+
+        .ob-content {
+            padding: 40px 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 32px;
+        }
+
+        .ob-icon-wrap {
+            width: 80px;
+            height: 80px;
+            background: #F0EEFF;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .ob-screen-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #1A1A2E;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .ob-screen-text {
+            font-size: 0.95rem;
+            color: #4A4A6A;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .ob-nav {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .ob-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .ob-dots .dot {
+            width: 8px;
+            height: 8px;
+            background: #D1D5DB;
+            border-radius: 50%;
+        }
+
+        .ob-dots .dot.active {
+            background: #7B61FF;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .ob-btn-next, .ob-btn-getstarted {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(90deg, #7B61FF 0%, #A855F7 100%);
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .ob-skip {
+            color: #7B61FF;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Booking Flow */
+        .bk-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--section-padding) var(--container-padding);
+        }
+
+        .bk-flow-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            overflow-x: auto;
+            padding-bottom: 2rem;
+        }
+
+        .bk-step-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            min-width: 260px;
+        }
+
+        .bk-phone-frame {
+            width: 100%;
+            aspect-ratio: 9/19.5;
+            background: #1A1A2E;
+            border-radius: 36px;
+            padding: 8px;
+        }
+
+        .bk-screen-content {
+            background: #fff;
+            height: 100%;
+            border-radius: 30px;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .bk-scr-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .bk-date-pills {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .bk-date-pill {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .bk-date-pill.active {
+            background: #F0EEFF;
+            border-color: #7B61FF;
+            color: #7B61FF;
+            font-weight: 600;
+        }
+
+        .bk-calendar {
+            background: #F9FAFB;
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .bk-cal-month {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .bk-cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            font-size: 0.65rem;
+            text-align: center;
+        }
+
+        .bk-cal-grid span {
+            padding: 6px 0;
+            border-radius: 4px;
+        }
+
+        .active-range {
+            background: #F0EEFF;
+            color: #7B61FF;
+        }
+
+        .active-range.selected {
+            background: #7B61FF;
+            color: #fff;
+        }
+
+        .bk-btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: #7B61FF;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-top: auto;
+        }
+
+        .bk-guest-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .bk-counter {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #F3F4F6;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .bk-room-card {
+            display: flex;
+            gap: 12px;
+            padding: 10px;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            align-items: center;
+        }
+
+        .bk-room-card.selected {
+            border-color: #7B61FF;
+            background: #F0EEFF;
+        }
+
+        .bk-room-img {
+            width: 60px;
+            height: 60px;
+            background: #E5E7EB;
+            border-radius: 8px;
+        }
+
+        .bk-room-info h5 {
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .bk-price-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bk-price-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #4A4A6A;
+        }
+
+        .bk-price-total {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #D1D5DB;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1rem;
+            color: #1A1A2E;
+        }
+
+        .bk-conf-screen {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bk-conf-check {
+            width: 60px;
+            height: 60px;
+            background: #10B981;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bk-conf-text {
+            font-size: 0.85rem;
+            color: #4A4A6A;
+            margin-bottom: 1rem;
+        }
+
+        .bk-conf-id {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #7B61FF;
+            margin-bottom: 2rem;
+        }
+
+        /* Profile */
+        .pr-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .persona-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .persona-photo-header {
+            height: 240px;
+            background: linear-gradient(rgba(123, 97, 255, 0.4), rgba(123, 97, 255, 0.8)), url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+        }
+
+        .persona-name {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .persona-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .persona-bio-card {
+            padding: 32px;
+        }
+
+        .persona-bio-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4A4A6A;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .persona-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .persona-stat-badge {
+            background: #F0EEFF;
+            padding: 12px;
+            border-radius: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .persona-stat-badge span {
+            font-size: 0.75rem;
+            color: #7B61FF;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .persona-stat-badge strong {
+            font-size: 0.85rem;
+            color: #1A1A2E;
+        }
+
+        .pr-card-label {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #7B61FF;
+        }
+
+        .pr-account-screen {
+            padding: 40px 20px 20px;
+            background: #fff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pr-acc-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .pr-avatar {
+            width: 60px;
+            height: 60px;
+            background: #EDE0FA;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #7B61FF;
+            font-size: 1.2rem;
+        }
+
+        .pr-acc-info h4 { margin-bottom: 2px; }
+        .pr-acc-info p { font-size: 0.8rem; color: #9CA3AF; }
+
+        .pr-acc-section { margin-bottom: 1.5rem; }
+        .pr-acc-label { font-size: 0.9rem; font-weight: 800; margin-bottom: 10px; }
+
+        .pr-booking-mini {
+            display: flex;
+            gap: 12px;
+            background: #F9FAFB;
+            padding: 12px;
+            border-radius: 16px;
+            align-items: center;
+        }
+
+        .pr-booking-img { width: 50px; height: 50px; background: #E5E7EB; border-radius: 10px; }
+
+        .pr-settings-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pr-settings-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4A4A6A;
+        }
+
+        .pr-bottom-nav {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-around;
+            padding-top: 16px;
+            border-top: 1px solid #F3F4F6;
+        }
+
+        .nav-icon { font-size: 0.7rem; color: #9CA3AF; font-weight: 600; }
+        .nav-icon.active { color: #7B61FF; }
+
+        /* Search & Filter */
+        .sf-search-pill {
+            background: #fff;
+            border-radius: 24px;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin: 10px;
+        }
+
+        .sf-city { font-size: 0.85rem; font-weight: 800; display: block; }
+        .sf-details { font-size: 0.7rem; color: #64748b; }
+        .sf-btn-change {
+            background: #F0EEFF;
+            color: #7B61FF;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .sf-map-area {
+            height: 200px;
+            background: #f1f3f4;
+            position: relative;
+            background-image: radial-gradient(#e0e0e0 2px, transparent 2px);
+            background-size: 20px 20px;
+        }
+
+        .sf-pin-bubble {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            background: #7B61FF;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(123, 97, 255, 0.4);
+        }
+
+        .sf-hotel-card {
+            padding: 16px;
+            background: #fff;
+            display: flex;
+            gap: 12px;
+            border-top: 1px solid #F3F4F6;
+        }
+
+        .sf-hotel-img { width: 80px; height: 80px; background: #E5E7EB; border-radius: 12px; }
+        .sf-hotel-info h3 { font-size: 1rem; margin-bottom: 4px; }
+        .sf-hotel-info p { font-size: 0.75rem; color: #64748b; line-height: 1.4; margin-bottom: 8px; }
+
+        .fw-filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .fw-chip {
+            padding: 10px 20px;
+            background: #fff;
+            border: 1px solid #E5E7EB;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4A4A6A;
+            cursor: pointer;
+        }
+
+        .fw-chip.active {
+            background: #7B61FF;
+            color: #fff;
+            border-color: #7B61FF;
+        }
+
+        .fw-wishlist-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 3rem;
+            font-weight: 700;
+            color: #7B61FF;
+        }
+
+        /* ── Truly Global Overrides for Bulletproof Responsiveness ── */
+        @media (max-width: 1024px) {
+            .ob-card-grid, .bk-flow-grid, .pr-content-grid {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+            
+            .bk-flow-grid {
+                overflow-x: hidden;
+            }
+
+            .ob-phone-frame, .bk-phone-frame, .pr-phone-frame, .sf-phone-frame {
+                width: 320px !important;
+                height: 640px !important;
+                position: static !important;
+                transform: none !important;
+                margin: 0 auto !important;
+            }
+
+            .persona-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .sf-main-card {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ob-phone-frame, .bk-phone-frame, .pr-phone-frame, .sf-phone-frame {
+                width: 280px !important;
+                height: 560px !important;
+            }
+            
+            .ob-screen-title { font-size: 1.25rem; }
+            .persona-name { font-size: 1.5rem; }
+            .persona-bio-text { font-size: 1rem; }
+            .persona-stats {
+                grid-template-columns: 1fr !important;
+            }
+            .donut-callout {
+                font-size: 10px !important;
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+                margin-bottom: 8px;
+                text-align: center !important;
+            }
+            .donut-label-container {
+                position: static !important;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 2rem;
+            }
+            .callout-line {
+                display: none;
+            }
         }
 
         /* Responsive */
@@ -730,26 +1375,25 @@
             }
 
             .phones-container {
-                height: 520px;
-                margin-top: -2.5rem;
-                /* Precise overlap for mobile text */
+                height: auto;
+                margin-top: 2rem;
+                perspective: none;
+                transform-style: flat;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                align-items: center;
             }
 
             .phone {
-                width: 260px;
-                /* Scaled down slightly */
-                height: 520px;
-                /* Scaled down slightly */
+                width: 280px;
+                height: 560px;
                 border-width: 8px;
                 border-radius: 40px;
-            }
-
-            .phone.left {
-                transform: translateX(65px) translateZ(-50px) rotateY(25deg) rotateX(5deg) rotateZ(-5deg) scale(0.85);
-            }
-
-            .phone.right {
-                transform: translateX(-65px) translateZ(50px) rotateY(-10deg) rotateX(2deg);
+                position: static !important;
+                transform: none !important;
+                opacity: 1 !important;
+                animation: none !important;
             }
 
             .quote-section {
@@ -1051,10 +1695,26 @@
         @media (max-width: 768px) {
             .overview-top {
                 flex-direction: column;
-                gap: 40px;
+                gap: 24px;
+                align-items: center;
+                text-align: center;
             }
             .overview-left, .overview-right {
                 width: 100%;
+            }
+            .overview-intro {
+                max-width: 100%;
+            }
+            .overview-tags {
+                justify-content: center;
+            }
+            .meta-item {
+                padding: 16px 0;
+                padding-left: 0;
+                text-align: center;
+            }
+            .meta-item::before {
+                display: none;
             }
             .overview-bottom {
                 flex-direction: column;
@@ -3937,7 +4597,7 @@
         </nav>
 
         <div class="header-block">
-            <p class="subheading">Aditya Manohar</p>
+            <p class="subheading" style="color: var(--primary-purple); font-weight: 600;">Aditya Manohar</p>
             <h1>
                 <span>Stayo : Hotel</span>
                 <span class="booking-app">Booking App</span>
@@ -5106,25 +5766,72 @@
                         <h2 class="ob-title">Onboarding</h2>
                     </div>
                     <p class="ob-header-desc">
-                        We conducted a survey to understand user behavior, frustrations, and expectations around hotel booking apps. The results helped define key pain points and shape the experience of Stayo to make it fast, trustworthy, and visually simple.
+                        A seamless introduction to Stayo. We guide users through the key value propositions with a clean, 3-step onboarding flow.
                     </p>
                 </div>
             </div>
 
-            <div class="ob-card">
-                <!-- Phone 1: Find Your Stay -->
-                <div class="ob-phone ob-phone-side ob-phone-left" style="scale: 0.92; border: none; background: none; box-shadow: none;">
-                    <img src="Screenshot 2026-05-04 190248.png" alt="Onboarding 1" style="width: 100%; height: auto; border-radius: 36px; box-shadow: 0 24px 48px rgba(61,36,104,0.25);">
+            <div class="ob-card-grid">
+                <!-- Screen 1: Smooth Booking -->
+                <div class="ob-step">
+                    <div class="phone ob-phone-frame">
+                        <div class="screen ob-screen-1">
+                            <div class="ob-content">
+                                <div class="ob-icon-wrap">
+                                    <div class="ob-3d-icon pin-icon">📍</div>
+                                </div>
+                                <h3 class="ob-screen-title">Smooth Booking, Seamless Experience</h3>
+                                <p class="ob-screen-text">Experience the fastest way to book your next getaway with Stayo's intuitive interface.</p>
+                                <div class="ob-nav">
+                                    <div class="ob-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+                                    <button class="ob-btn-next">Next</button>
+                                    <a href="#" class="ob-skip">Skip</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="ob-step-label">Step 1: Experience</span>
                 </div>
 
-                <!-- Phone 2: Smooth Booking -->
-                <div class="ob-phone ob-phone-center" style="border: none; background: none; box-shadow: none;">
-                    <img src="Screenshot 2026-05-04 190153.png" alt="Onboarding 2" style="width: 100%; height: auto; border-radius: 36px; box-shadow: 0 32px 64px rgba(61,36,104,0.3);">
+                <!-- Screen 2: Find Your Stay -->
+                <div class="ob-step">
+                    <div class="phone ob-phone-frame">
+                        <div class="screen ob-screen-2">
+                            <div class="ob-content">
+                                <div class="ob-icon-wrap">
+                                    <div class="ob-3d-icon bed-icon">🛏️</div>
+                                </div>
+                                <h3 class="ob-screen-title">Find Your Perfect Stay</h3>
+                                <p class="ob-screen-text">Discover thousands of hand-picked hotels and resorts tailored to your travel style.</p>
+                                <div class="ob-nav">
+                                    <div class="ob-dots"><span class="dot"></span><span class="dot active"></span><span class="dot"></span></div>
+                                    <button class="ob-btn-next">Next</button>
+                                    <a href="#" class="ob-skip">Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="ob-step-label">Step 2: Discover</span>
                 </div>
 
-                <!-- Phone 3: Secure & Flexible -->
-                <div class="ob-phone ob-phone-side ob-phone-right" style="scale: 0.92; border: none; background: none; box-shadow: none;">
-                    <img src="Screenshot 2026-05-04 190231.png" alt="Onboarding 3" style="width: 100%; height: auto; border-radius: 36px; box-shadow: 0 24px 48px rgba(61,36,104,0.25);">
+                <!-- Screen 3: Book in Seconds -->
+                <div class="ob-step">
+                    <div class="phone ob-phone-frame">
+                        <div class="screen ob-screen-3">
+                            <div class="ob-content">
+                                <div class="ob-icon-wrap">
+                                    <div class="ob-3d-icon cal-icon">📅</div>
+                                </div>
+                                <h3 class="ob-screen-title">Book in Seconds</h3>
+                                <p class="ob-screen-text">Fast checkout, secure payments, and instant confirmation for your peace of mind.</p>
+                                <div class="ob-nav">
+                                    <div class="ob-dots"><span class="dot"></span><span class="dot"></span><span class="dot active"></span></div>
+                                    <button class="ob-btn-getstarted">Get Started</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="ob-step-label">Step 3: Checkout</span>
                 </div>
             </div>
         </div>
@@ -5233,95 +5940,180 @@
 
     <!-- Booking Screen Section -->
     <section class="bk-section">
-        <div class="bk-header">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
-                <div>
-                    <div class="bk-label" style="display: inline-block; background: #FFFFFF; border: 1px solid #E5D5F5; border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 500; color: #1A1A2E; margin-bottom: 14px;">— Booking Screen</div>
-                    <h2 class="bk-title">Booking Screen</h2>
+        <div class="bk-container">
+            <div class="bk-header">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
+                    <div>
+                        <div class="bk-label">— Booking Screen</div>
+                        <h2 class="bk-title" style="color: var(--primary-purple); font-weight: 800;">Booking Screen</h2>
+                    </div>
+                    <p class="bk-header-desc">
+                        A clean, step-by-step booking flow where users can select dates, number of guests, and room options — supported by clear price breakdowns and call-to-actions.
+                    </p>
                 </div>
-                <p class="bk-header-desc">
-                    A clean, step-by-step booking flow where users can select dates, number of guests, and room options — supported by clear price breakdowns and call-to-actions.
-                </p>
-            </div>
-        </div>
-
-        <div class="bk-outer-container">
-            <!-- Phone 1: Hotel Detail -->
-            <div class="bk-phone bk-p1">
-                <img src="book1.png" style="width:100%; height:100%; object-fit:cover;" alt="Hotel Detail"/>
             </div>
 
-            <!-- Phone 2: Request a Book (Date Select) -->
-            <div class="bk-phone bk-p2">
-                <img src="book2.png" style="width:100%; height:100%; object-fit:cover;" alt="Date Selection"/>
-            </div>
+            <div class="bk-flow-grid">
+                <!-- Screen 1: Select Date -->
+                <div class="bk-step-card">
+                    <div class="phone bk-phone-frame">
+                        <div class="screen bk-screen-content">
+                            <div class="bk-status-bar"></div>
+                            <div class="bk-inner">
+                                <h4 class="bk-scr-title">Select Date</h4>
+                                <div class="bk-date-pills">
+                                    <div class="bk-date-pill active">23 Aug</div>
+                                    <div class="bk-date-pill">27 Aug</div>
+                                </div>
+                                <div class="bk-calendar">
+                                    <div class="bk-cal-month">August 2026</div>
+                                    <div class="bk-cal-grid">
+                                        <!-- Mock Calendar -->
+                                        <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                                        <span class="active-range">22</span><span class="active-range selected">23</span><span class="active-range">24</span><span class="active-range">25</span><span class="active-range">26</span><span class="active-range selected">27</span><span>28</span>
+                                    </div>
+                                </div>
+                                <button class="bk-btn-primary">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="bk-step-label">1. Select Date</span>
+                </div>
 
-            <!-- Phone 3: Calendar Modal -->
-            <div class="bk-phone bk-p3">
-                <img src="book3.png" style="width:100%; height:100%; object-fit:cover;" alt="Calendar Modal"/>
-            </div>
+                <!-- Screen 2: Guests -->
+                <div class="bk-step-card">
+                    <div class="phone bk-phone-frame">
+                        <div class="screen bk-screen-content">
+                            <div class="bk-inner">
+                                <h4 class="bk-scr-title">Number of Guests</h4>
+                                <div class="bk-guest-row">
+                                    <span>Adults</span>
+                                    <div class="bk-counter"><button>-</button><span>2</span><button>+</button></div>
+                                </div>
+                                <div class="bk-guest-row">
+                                    <span>Children</span>
+                                    <div class="bk-counter"><button>-</button><span>1</span><button>+</button></div>
+                                </div>
+                                <button class="bk-btn-primary">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="bk-step-label">2. Guests</span>
+                </div>
 
-            <!-- Phone 4: Payment -->
-            <div class="bk-phone bk-p4">
-                <img src="book4.png" style="width:100%; height:100%; object-fit:cover;" alt="Payment Method"/>
-            </div>
+                <!-- Screen 3: Room Selection -->
+                <div class="bk-step-card">
+                    <div class="phone bk-phone-frame">
+                        <div class="screen bk-screen-content">
+                            <div class="bk-inner">
+                                <h4 class="bk-scr-title">Room Selection</h4>
+                                <div class="bk-room-card selected">
+                                    <div class="bk-room-img"></div>
+                                    <div class="bk-room-info">
+                                        <h5>Deluxe Suite</h5>
+                                        <span>$420 / night</span>
+                                    </div>
+                                </div>
+                                <div class="bk-room-card">
+                                    <div class="bk-room-img"></div>
+                                    <div class="bk-room-info">
+                                        <h5>Standard Room</h5>
+                                        <span>$280 / night</span>
+                                    </div>
+                                </div>
+                                <button class="bk-btn-primary">Next Step</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="bk-step-label">3. Room Type</span>
+                </div>
 
-            <!-- Phone 5: Booking Confirmed -->
-            <div class="bk-phone bk-p5">
-                <img src="book5.png" style="width:100%; height:100%; object-fit:cover;" alt="Booking Confirmation"/>
-            </div>
+                <!-- Screen 4: Price Breakdown -->
+                <div class="bk-step-card">
+                    <div class="phone bk-phone-frame">
+                        <div class="screen bk-screen-content">
+                            <div class="bk-inner">
+                                <h4 class="bk-scr-title">Price Breakdown</h4>
+                                <div class="bk-price-list">
+                                    <div class="bk-price-item"><span>4 nights</span><span>$1,680</span></div>
+                                    <div class="bk-price-item"><span>Service Fee</span><span>$45</span></div>
+                                    <div class="bk-price-item"><span>Taxes</span><span>$120</span></div>
+                                    <div class="bk-price-total"><span>Total</span><span>$1,845</span></div>
+                                </div>
+                                <button class="bk-btn-primary">Confirm & Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="bk-step-label">4. Summary</span>
+                </div>
 
-            <!-- Floating Creative Bubbles -->
-            <div class="bk-floating-bubble bk-bub-1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Instant Confirmation
-            </div>
-            <div class="bk-floating-bubble bk-bub-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                Secure Payment
+                <!-- Screen 5: Confirmation -->
+                <div class="bk-step-card">
+                    <div class="phone bk-phone-frame">
+                        <div class="screen bk-screen-content bk-conf-screen">
+                            <div class="bk-inner">
+                                <div class="bk-conf-check">✓</div>
+                                <h4 class="bk-scr-title">Booking Confirmed!</h4>
+                                <p class="bk-conf-text">Your stay at The Amanpuri is booked for Aug 23-27.</p>
+                                <div class="bk-conf-id">ID: #ST-99284</div>
+                                <button class="bk-btn-secondary">View Booking</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="bk-step-label">5. Success</span>
+                </div>
             </div>
         </div>
     </section>
     
     <!-- Search Flow Section -->
     <section class="sf-section">
-        <div class="sf-outer-container">
-            <!-- Left Column: Text -->
-            <div class="sf-left">
-                <div class="sf-label" style="display: inline-block; background: #FFFFFF; border: 1px solid #E5D5F5; border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 500; color: #1A1A2E; margin-bottom: 14px;">— Search Flow</div>
-                <h2 class="sf-title">Search Flow</h2>
-                <div class="sf-spacer"></div>
-                <p class="sf-desc">
-                    Users can explore hotels by applying filters such as price, rating, and amenities. Results are shown in an easy-to-scan card format, allowing quick comparison and selection.
+        <div class="sf-container">
+            <div class="sf-header">
+                <div class="sf-label">— Search Flow</div>
+                <h2 class="sf-title">Search Experience</h2>
+                <p class="sf-header-desc">
+                    A powerful map-based search that helps users find the perfect location. We provide instant visual feedback and easy access to hotel details.
                 </p>
             </div>
 
-            <!-- Right Column: Phone Composition -->
-            <div class="sf-right">
-                <!-- Phone 1: Search Screen -->
-                <div class="sf-phone sf-p1">
-                    <img src="search1.png" style="width:100%; height:100%; object-fit:cover;" alt="Search Screen"/>
-                </div>
-
-                <!-- Phone 2: Map View -->
-                <div class="sf-phone sf-p2">
-                    <img src="search2.png" style="width:100%; height:100%; object-fit:cover;" alt="Map View"/>
-                </div>
-
-                <!-- Phone 3: Search Results -->
-                <div class="sf-phone sf-p3">
-                    <img src="search3.png" style="width:100%; height:100%; object-fit:cover;" alt="Search Results"/>
-                </div>
-
-                <!-- Floating Map Elements -->
-                <div class="sf-floating-map-elem" style="top: 10%; right: -20px; animation-delay: 0.5s;">
-                    <div class="sf-price-marker active" style="transform: scale(1.2); position: relative;">$420</div>
-                </div>
-                <div class="sf-floating-map-elem" style="bottom: 20%; right: 40px; animation-delay: 0.8s;">
-                    <div class="sf-price-marker" style="transform: scale(0.9); position: relative; background: #C4A0E8; opacity: 0.8;">$280</div>
+            <div class="sf-main-card">
+                <div class="phone sf-phone-frame">
+                    <div class="screen sf-map-screen">
+                        <div class="sf-top-bar">
+                            <div class="sf-search-pill">
+                                <div class="sf-search-info">
+                                    <span class="sf-city">Hotel in Bangkok</span>
+                                    <span class="sf-details">22 Apr – 26 Apr • 4 Guests</span>
+                                </div>
+                                <button class="sf-btn-change">Change</button>
+                            </div>
+                        </div>
+                        <div class="sf-map-area">
+                            <div class="sf-pin-bubble">
+                                <span class="sf-pin-price">$199</span>
+                                <span class="sf-pin-rating">★ 4.8</span>
+                            </div>
+                        </div>
+                        <div class="sf-hotel-card">
+                            <div class="sf-hotel-img"></div>
+                            <div class="sf-hotel-info">
+                                <h3>The Royal Orchid Resort</h3>
+                                <p>Luxury stay with panoramic city views and infinity pool.</p>
+                                <div class="sf-price-row">
+                                    <span class="sf-price">$199</span><span class="sf-per">/night</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sf-scroll-indicator">
+                            <div class="sf-indicator-dot"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
     </section>
+
 
     <!-- Filter & Wishlist Section -->
     <section class="fw-section">
@@ -5444,48 +6236,70 @@
 
     <!-- Profile Section -->
     <section class="pr-section">
-        <div class="pr-header">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
-                <div>
-                    <div class="pr-label" style="display: inline-block; background: #FFFFFF; border: 1px solid #E5D5F5; border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 500; color: #1A1A2E; margin-bottom: 14px;">— Profile Screen</div>
-                    <h2 class="pr-title">Profile Screen</h2>
-                </div>
+        <div class="pr-container">
+            <div class="pr-header">
+                <div class="pr-label">— User & Account</div>
+                <h2 class="pr-title">Personalized Experience</h2>
                 <p class="pr-header-desc">
-                    Lets users manage their account, view past bookings, access support, and customize preferences. Designed with clarity and simplicity in mind.
+                    We designed the profile and account experience to feel personal and efficient — providing quick access to bookings and settings.
                 </p>
             </div>
-        </div>
 
-        <div class="pr-outer-container">
-            <!-- Phone A: Notifications (Left) -->
-            <div class="pr-phone pr-p1">
-                <img src="Screenshot 2026-05-05 032224.png" style="width:100%; height:100%; object-fit:cover;" alt="Notifications Screen"/>
-            </div>
+            <div class="pr-content-grid">
+                <!-- Image 1: Richard Steve Persona -->
+                <div class="persona-card">
+                    <div class="persona-photo-header">
+                        <div class="persona-name-wrap">
+                            <h3 class="persona-name">Richard Steve</h3>
+                            <p class="persona-subtitle">Traveler and Explorer</p>
+                        </div>
+                    </div>
+                    <div class="persona-bio-card">
+                        <p class="persona-bio-text">"Passionate solo traveler looking for seamless, fast, and secure hotel booking experiences across the globe."</p>
+                        <div class="persona-stats">
+                            <div class="persona-stat-badge"><span>Age</span><strong>27 Years</strong></div>
+                            <div class="persona-stat-badge"><span>Location</span><strong>India</strong></div>
+                            <div class="persona-stat-badge"><span>Style</span><strong>Solo Explorer</strong></div>
+                        </div>
+                    </div>
+                    <span class="pr-card-label">User Persona</span>
+                </div>
 
-            <!-- Floating Badges -->
-            <div class="pr-floating-badge pr-badge-left">
-                <div class="pr-badge-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <!-- Image 2: Alex Johnson Account Screen -->
+                <div class="account-step">
+                    <div class="phone pr-phone-frame">
+                        <div class="screen pr-account-screen">
+                            <div class="pr-acc-header">
+                                <div class="pr-avatar">AJ</div>
+                                <div class="pr-acc-info">
+                                    <h4>Alex Johnson</h4>
+                                    <p>alex.johnson@example.com</p>
+                                </div>
+                            </div>
+                            <div class="pr-acc-section">
+                                <h5 class="pr-acc-label">My Booking</h5>
+                                <div class="pr-booking-mini">
+                                    <div class="pr-booking-img"></div>
+                                    <div class="pr-booking-info">
+                                        <h6>Shinewood Hills Retreat</h6>
+                                        <span>25 Aug – 27 Aug</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pr-settings-list">
+                                <div class="pr-settings-item"><span>Personal Information</span></div>
+                                <div class="pr-settings-item"><span>Payment Methods</span></div>
+                                <div class="pr-settings-item"><span>Notifications</span></div>
+                                <div class="pr-settings-item"><span>Privacy & Security</span></div>
+                                <div class="pr-settings-item"><span>Language & Currency</span></div>
+                            </div>
+                            <div class="pr-bottom-nav">
+                                <div class="nav-icon">Home</div><div class="nav-icon">Search</div><div class="nav-icon">Fav</div><div class="nav-icon active">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="pr-card-label">Account Screen</span>
                 </div>
-                <div class="pr-badge-text">
-                    <span class="pr-badge-title">Secured Data</span>
-                    <span class="pr-badge-sub">AES-256 Encryption</span>
-                </div>
-            </div>
-
-            <div class="pr-floating-badge pr-badge-right">
-                <div class="pr-badge-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <div class="pr-badge-text">
-                    <span class="pr-badge-title">24/7 Support</span>
-                    <span class="pr-badge-sub">Instant response</span>
-                </div>
-            </div>
-
-            <!-- Phone B: Account (Center) -->
-            <div class="pr-phone pr-p2">
-                <img src="Screenshot 2026-05-05 032211.png" style="width:100%; height:100%; object-fit:cover;" alt="Account Screen"/>
             </div>
         </div>
     </section>
